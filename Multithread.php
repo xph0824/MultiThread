@@ -100,6 +100,7 @@ abstract class MultiThread
         }
     }
 
+    // 存储进程
     final protected function pushChildProcessId($pid)
     {
         $num = $this->detectChildProcessAlive();
@@ -110,9 +111,11 @@ abstract class MultiThread
         }
     }
 
+    // 发现进程
     final protected function detectChildProcessAlive()
     {
         foreach (self::$childProcess as $num => $pid) {
+            //posix_kill($pid, 0) 用来检测指定的进程PID是否存在,存在返回true, 反之返回false
             if (!posix_kill($pid, 0)) {
                 return $num;
             } else {
@@ -121,11 +124,13 @@ abstract class MultiThread
         }
     }
 
+    
     final public function setChildOverNewCreate($isNewCreate)
     {
         $this->isNewCreate = $isNewCreate;
     }
 
+     // 安装信号
     final public function registerSignal()
     {
         pcntl_signal(SIGTERM, [$this, 'signalHandler']);
