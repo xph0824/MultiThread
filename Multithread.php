@@ -1,6 +1,6 @@
 <?php
 /**
- * 多线程基类
+ * 多进程基类
  * DateTime: 2020/06/28 10:05 上午
  * Author: Songyl <skill1221@163.com>
  */
